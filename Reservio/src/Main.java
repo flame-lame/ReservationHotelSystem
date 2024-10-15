@@ -20,13 +20,26 @@ public class Main {
         Room room3 = new Room(3, 3,false, true, new BigDecimal("2400"));
 
         BookingManager bookingManager = new BookingManager();
-        List<Booking> bookings = bookingManager.getBookings();
+        List<Booking> bookings = new ArrayList<>();
         bookings.add(new Booking(room3, List.of(guest1), LocalDate.of(2023, 6, 1), LocalDate.of(2023, 6, 7), TypeOfVacation.Work, 1));
         bookings.add(new Booking(room2, List.of(guest2), LocalDate.of(2023, 7, 18), LocalDate.of(2023, 7, 21), TypeOfVacation.Joy, 1));
         bookings.add(new Booking(room3, List.of(guest3, guest1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 8, 31), TypeOfVacation.Work, 2));
 
         for (int i = 1; i < 20; i += 2) {
             bookings.add(new Booking(room2, List.of(guest3), LocalDate.of(2023, 8, i), LocalDate.of(2023, 8, (i+1)), TypeOfVacation.Joy, 2));
+        }
+
+        System.out.println("---> All vacations");
+        System.out.println(" ");
+        for (Booking booking : bookings) {
+            if (bookingManager.isAvailable(booking.getRoom(), booking.getFromDate(), booking.getToDate())) {
+                LocalDateTransform fromDate = new LocalDateTransform(booking.getFromDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                LocalDateTransform toDate = new LocalDateTransform(booking.getToDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                bookingManager.addBooking(booking);
+                System.out.println("Vacation from: " + fromDate.getFormattedDate() + " Vacation to: " + toDate.getFormattedDate() + " Guest name: " + booking.getGuest()  + " Nights: " +  booking.getNights() + " Price: " +  booking.getPrice());
+            } else {
+                System.out.println("Its booked, please choose another dates.");
+            }
         }
 
         int numberOfVacations = bookingManager.getNumberOfVacations();
@@ -40,6 +53,12 @@ public class Main {
             totalGuests += booking.getGuest().size();
         }
 
+        System.out.println(" ");
+        System.out.println("--->");
+        System.out.println("First eight Joy vacations");
+        bookingManager.getFirstEightJoyVacations();
+
+        System.out.println(" ");
         System.out.println("---> Vacation statistics");
         System.out.println("Number of vacations: " + numberOfVacations);
         System.out.println("Joy vacations: " + numberOfJoyVacations);
@@ -53,24 +72,6 @@ public class Main {
         } else {
             System.out.println("Average guests: N/A (no vacations)");
         }
-        System.out.println("--->");
-        System.out.println("Available vacations");
-        for (Booking booking : bookings) {
-            if (bookingManager.isAvailable(booking.getRoom(), booking.getFromDate(), booking.getToDate())) {
-                LocalDateTransform fromDate = new LocalDateTransform(booking.getFromDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                LocalDateTransform toDate = new LocalDateTransform(booking.getToDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                //bookingManager.addBooking(booking);
-                //System.out.println("Vacation from: " + fromDate.getFormattedDate() + " Vacation to: " + toDate.getFormattedDate() + " Guest name: " + booking.getGuest()  + " Nights: " +  booking.getNights() + " Price: " +  booking.getPrice());
-            } else {
-                System.out.println("Its booked, please choose another dates.");
-            }
-        }
-
-        System.out.println("--->");
-        System.out.println("First eight Joy vacations");
-        bookingManager.getFirstEightJoyVacations();
-        System.out.println("--->");
-        //bookingManager.printAllBookings();
 
 
     }

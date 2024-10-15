@@ -59,12 +59,12 @@ public class BookingManager {
         List<Booking> firstEightJoyVacations = new ArrayList<>();
         int counter = 0;
         for (Booking booking : bookings) {
-            //LocalDateTransform fromDate = new LocalDateTransform(booking.getFromDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-            //LocalDateTransform toDate = new LocalDateTransform(booking.getToDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             if (booking.getTypeOfVacation() == TypeOfVacation.Joy) {
                 firstEightJoyVacations.add(booking);
                 counter++;
-                System.out.println(booking.getFromDate() + " - " + booking.getToDate() + " : " + booking.getGuest() + " : "+ booking.getPrice() + " CZK");
+                System.out.println(
+                        dateTimeFormatter.format(booking.getFromDate()) + " - " + dateTimeFormatter.format(booking.getToDate()) + " : " + booking.getGuest() + " : "+ booking.getPrice() + " CZK");
                 if (counter == 8) {
                     break;
                 }
