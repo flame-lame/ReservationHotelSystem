@@ -60,7 +60,7 @@ public class Main {
                 LocalDateTransform fromDate = new LocalDateTransform(booking.getFromDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                 LocalDateTransform toDate = new LocalDateTransform(booking.getToDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                 //bookingManager.addBooking(booking);
-                System.out.println("Vacation from: " + fromDate.getFormattedDate() + " Vacation to: " + toDate.getFormattedDate() + " Guest name: " + booking.getGuest()  + " Nights: " +  booking.getNights() + " Price: " +  booking.getPrice());
+                //System.out.println("Vacation from: " + fromDate.getFormattedDate() + " Vacation to: " + toDate.getFormattedDate() + " Guest name: " + booking.getGuest()  + " Nights: " +  booking.getNights() + " Price: " +  booking.getPrice());
             } else {
                 System.out.println("Its booked, please choose another dates.");
             }
@@ -70,7 +70,7 @@ public class Main {
         System.out.println("First eight Joy vacations");
         bookingManager.getFirstEightJoyVacations();
         System.out.println("--->");
-        bookingManager.printAllBookings();
+        //bookingManager.printAllBookings();
 
 
     }
