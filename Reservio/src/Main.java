@@ -20,8 +20,7 @@ public class Main {
         Room room3 = new Room(3, 3,false, true, new BigDecimal("2400"));
 
         BookingManager bookingManager = new BookingManager();
-        List<Booking> bookings = new ArrayList<>();
-
+        List<Booking> bookings = bookingManager.getBookings();
         bookings.add(new Booking(room3, List.of(guest1), LocalDate.of(2023, 6, 1), LocalDate.of(2023, 6, 7), TypeOfVacation.Work, 1));
         bookings.add(new Booking(room2, List.of(guest2), LocalDate.of(2023, 7, 18), LocalDate.of(2023, 7, 21), TypeOfVacation.Joy, 1));
         bookings.add(new Booking(room3, List.of(guest3, guest1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 8, 31), TypeOfVacation.Work, 2));
@@ -55,7 +54,7 @@ public class Main {
             System.out.println("Average guests: N/A (no vacations)");
         }
         System.out.println("--->");
-
+        System.out.println("Available vacations");
         for (Booking booking : bookings) {
             if (bookingManager.isAvailable(booking.getRoom(), booking.getFromDate(), booking.getToDate())) {
                 LocalDateTransform fromDate = new LocalDateTransform(booking.getFromDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
@@ -67,8 +66,11 @@ public class Main {
             }
         }
 
-        //System.out.println("---> All bookings");
-        //bookingManager.printAllBookings();
+        System.out.println("--->");
+        System.out.println("First eight Joy vacations");
+        bookingManager.getFirstEightJoyVacations();
+        System.out.println("--->");
+        bookingManager.printAllBookings();
 
 
     }

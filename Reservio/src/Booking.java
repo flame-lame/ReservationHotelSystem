@@ -15,18 +15,12 @@ public class Booking {
     private TypeOfVacation typeOfVacation;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    //private int numberOfGuests;
-    //private int guest;
-    //private List<Reservation> reservations;
-
     public Booking(Room room, List<Guest> guests, LocalDate fromDate, LocalDate toDate, TypeOfVacation typeOfVacation /* int numberOfGuests */, int guest) {
         this.room = room;
         this.guests = guests;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.typeOfVacation = typeOfVacation;
-        //this.numberOfGuests = numberOfGuests;
-        //this.guest = guest;
     }
 
     public LocalDate getFromDate() {

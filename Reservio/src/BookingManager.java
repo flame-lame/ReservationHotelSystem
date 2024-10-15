@@ -15,6 +15,10 @@ public class BookingManager {
         this.numberOfGuests = numberOfGuests;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
     public Booking getBooking(int index) {
         return bookings.get(index);
     }
@@ -48,7 +52,8 @@ public class BookingManager {
     public int getNumberOfVacations() {
         return getNumberOfJoyVacations() + getNumberOfWorkVacations();
     }
-    /*
+
+
     public List<Booking> getFirstEightJoyVacations() {
         List<Booking> firstEightJoyVacations = new ArrayList<>();
         int counter = 0;
@@ -56,6 +61,7 @@ public class BookingManager {
             if (booking.getTypeOfVacation() == TypeOfVacation.Joy) {
                 firstEightJoyVacations.add(booking);
                 counter++;
+                System.out.println(booking.getFromDate() + " - " + booking.getToDate() + " : " + booking.getGuest() + " : "+ booking.getPrice() + " CZK");
                 if (counter == 8) {
                     break;
                 }
@@ -63,7 +69,7 @@ public class BookingManager {
         }
         return firstEightJoyVacations;
     }
-*/
+
     public int getOneGuestBookings() {
         int numberOfOneGuestBookings = 0;
         for (Booking booking : bookings) {
